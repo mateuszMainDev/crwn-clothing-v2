@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Button from '../button/button.component';
 import FormInput from '../form-input/form-input.component';
 import {
-  createUserDocumentFromAuth,
   signInUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
@@ -24,8 +23,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
     } catch (error) {
       console.log('User signing in with google encountered an error', error);
     }
@@ -37,10 +35,7 @@ const SignInForm = () => {
     if (!email || !password) return;
 
     try {
-      const { user } = await signInUserWithEmailAndPassword(email, password);
-      await createUserDocumentFromAuth(user);
-
-      console.log(user);
+      await signInUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
