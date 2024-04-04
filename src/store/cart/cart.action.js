@@ -1,9 +1,8 @@
 import { createAction } from '../../utils/reducer/reducer.utils';
 import { CART_ACTION_TYPES } from './cart.types';
 
-const removeCartItem = (cartItems, itemToRemove) => {
-  return cartItems.filter((item) => item.id !== itemToRemove.id);
-};
+const removeCartItem = (cartItems, itemToRemove) =>
+  cartItems.filter((item) => item.id !== itemToRemove.id);
 
 const subtractCartItem = (cartItems, productToSubtract) => {
   const foundItem = cartItems.find((item) => item.id === productToSubtract.id);
@@ -33,9 +32,8 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-export const setIsCartOpen = (isOpen) => {
+export const setIsCartOpen = (isOpen) =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isOpen);
-};
 
 export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
